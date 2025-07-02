@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Genius Test | Проверь свои интеллектуальные способности</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --light: #f7f7ff;
+            --dark: #2d3436;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --error: #e17055;
+            --glass-bg: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphism эффекты */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+        }
+
+        /* Шапка сайта */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(253, 121, 168, 0.6);
+            animation: pulse 2s infinite;
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Главная секция */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 50px;
+        }
+
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.6s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(108, 92, 231, 0.6);
+        }
+
+        .btn:hover::after {
+            left: 120%;
+        }
+
+        /* Секция истории */
+        .history {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+            align-items: center;
+        }
+
+        .history-content {
+            flex: 1;
+        }
+
+        .history-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .history-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .history-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .history-image .image-placeholder {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-image .image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(transparent, var(--accent), transparent 30%);
+            animation: rotate 4s linear infinite;
+        }
+
+        .history-image .image-placeholder::after {
+            content: 'IQ TEST';
+            position: absolute;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.1);
+            transform: rotate(-45deg);
+        }
+
+        /* Секция теста */
+        .test-section {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 50px;
+        }
+
+        .test-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--accent);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1/1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .grid-item.selected {
+            background: var(--accent);
+            transform: scale(0.95);
+            box-shadow: 0 0 20px rgba(253, 121, 168, 0.5);
+        }
+
+        .number-input-section {
+            max-width: 500px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .number-input-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(253, 121, 168, 0.4);
+        }
+
+        /* Результаты */
+        .results-section {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .results-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .iq-result {
+            font-size: 5rem;
+            font-weight: 800;
+            margin: 30px 0;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .genius {
+            color: var(--success);
+        }
+
+        .low {
+            color: var(--error);
+        }
+
+        .result-message {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 900px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .history {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="glass">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>IQ Genius Test</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i> История</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> О тесте</a></li>
+                    <li><a href="#"><i class="fas fa-trophy"></i> Результаты</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Главная секция -->
+        <section class="hero glass">
+            <h2>Проверьте свой интеллект</h2>
+            <p>Наш современный IQ-тест разработан ведущими нейропсихологами для точной оценки ваших когнитивных способностей. Узнайте, на что способен ваш мозг!</p>
+            <button id="startTest" class="btn">Начать тест</button>
+        </section>
+
+        <!-- История IQ тестов -->
+        <section class="history glass">
+            <div class="history-content">
+                <h3>История тестирования IQ</h3>
+                <p>Понятие коэффициента интеллекта (IQ) было введено в начале XX века немецким психологом Уильямом Штерном. Первые тесты интеллекта были разработаны Альфредом Бине и Теодором Симоном в 1905 году для выявления учащихся, нуждающихся в дополнительной помощи.</p>
+                <p>Современные IQ-тесты, такие как тест Векслера и тест Стэнфорд-Бине, прошли многолетнюю валидизацию и используются по всему миру для оценки когнитивных способностей. Средний показатель IQ составляет 100 баллов, а результаты выше 130 считаются показателями высокого интеллекта.</p>
+                <p>Наш тест использует новейшие достижения когнитивной психологии и нейронауки для наиболее точной оценки ваших интеллектуальных способностей.</p>
+            </div>
+            <div class="history-image">
+                <div class="image-placeholder"></div>
+            </div>
+        </section>
+
+        <!-- Секция теста -->
+        <section id="testSection" class="test-section glass">
+            <h3>Этап 1: Активация когнитивных функций</h3>
+            <p>Выберите любую клетку для продолжения теста. Этот выбор не влияет на результаты, но активирует ваши когнитивные центры.</p>
+            
+            <div class="grid-container">
+                <!-- 30 клеток будут сгенерированы через JS -->
+            </div>
+            
+            <div id="numberInputSection" class="number-input-section">
+                <h4>Этап 2: Числовой анализ</h4>
+                <p>Введите любое число, которое приходит вам в голову. Этот этап оценивает вашу интуицию и числовое восприятие.</p>
+                
+                <div class="input-group">
+                    <input type="number" id="iqNumber" placeholder="Введите любое число...">
+                    <button id="submitNumber" class="btn">Анализировать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Результаты -->
+        <section id="resultsSection" class="results-section glass">
+            <h3>Ваши результаты</h3>
+            <div class="iq-result" id="iqScore">???</div>
+            <div class="result-message" id="resultMessage">
+                Анализируем ваши когнитивные способности...
+            </div>
+            <button id="restartTest" class="btn">Пройти тест снова</button>
+        </section>
+
+        <!-- Подвал -->
+        <footer>
+            <p>© 2023 IQ Genius Test. Все права защищены. Разработано с использованием новейших достижений когнитивной психологии.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.getElementById('startTest');
+            const testSection = document.getElementById('testSection');
+            const gridContainer = document.querySelector('.grid-container');
+            const numberInputSection = document.getElementById('numberInputSection');
+            const submitNumberBtn = document.getElementById('submitNumber');
+            const resultsSection = document.getElementById('resultsSection');
+            const iqScore = document.getElementById('iqScore');
+            const resultMessage = document.getElementById('resultMessage');
+            const restartBtn = document.getElementById('restartTest');
+            
+            // Создаем 30 клеток
+            for (let i = 1; i <= 30; i++) {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                gridItem.textContent = i;
+                gridContainer.appendChild(gridItem);
+            }
+            
+            // Начало теста
+            startBtn.addEventListener('click', function() {
+                document.querySelector('.hero').style.display = 'none';
+                document.querySelector('.history').style.display = 'none';
+                testSection.style.display = 'block';
+                testSection.classList.add('fade-in');
+            });
+            
+            // Выбор клетки
+            gridContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('grid-item')) {
+                    // Убираем выделение со всех клеток
+                    document.querySelectorAll('.grid-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    
+                    // Выделяем выбранную
+                    e.target.classList.add('selected');
+                    
+                    // Показываем поле ввода
+                    setTimeout(() => {
+                        numberInputSection.style.display = 'block';
+                        numberInputSection.classList.add('fade-in');
+                    }, 500);
+                }
+            });
+            
+            // Отправка числа
+            submitNumberBtn.addEventListener('click', function() {
+                const number = document.getElementById('iqNumber').value;
+                
+                // Скрываем тест и показываем результаты
+                testSection.style.display = 'none';
+                resultsSection.style.display = 'block';
+                resultsSection.classList.add('fade-in');
+                
+                // Проверяем число
+                const geniusNumbers = ['2222', '3333', '4545', '0909'];
+                
+                if (geniusNumbers.includes(number)) {
+                    iqScore.textContent = '250';
+                    iqScore.classList.add('genius');
+                    resultMessage.innerHTML = '<i class="fas fa-crown"></i> У вас 250 IQ, вы гений! <i class="fas fa-crown"></i><br>Ваш интеллект превосходит показатели Эйнштейна и Теслы. Вы обладаете экстраординарными когнитивными способностями!';
+                } else {
+                    iqScore.textContent = '50';
+                    iqScore.classList.add('low');
+                    resultMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> У вас 50 IQ, советуем обратиться к врачу.<br>Не волнуйтесь, наши специалисты помогут вам улучшить когнитивные функции с помощью специальной программы тренировок.';
+                }
+            });
+            
+            // Перезапуск теста
+            restartBtn.addEventListener('click', function() {
+                // Сбрасываем состояние
+                document.querySelectorAll('.grid-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                document.getElementById('iqNumber').value = '';
+                numberInputSection.style.display = 'none';
+                resultsSection.style.display = 'none';
+                
+                // Показываем главный экран
+                document.querySelector('.hero').style.display = 'block';
+                document.querySelector('.history').style.display = 'flex';
+            });
+            
+            // Плавное появление элементов при загрузке
+            const animatedElements = document.querySelectorAll('.glass');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                    el.classList.add('fade-in');
+                }, 200 * index);
+            });
+        });
+    </script>
+</body>
+</html>
